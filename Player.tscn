@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Player/stanjellysquish.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Player/stanjellystand.png" type="Texture" id=3]
+[ext_resource path="res://Player/STANJELLYFALL.png" type="Texture" id=4]
+[ext_resource path="res://Player/STANJELLYSTRETCH.png" type="Texture" id=5]
+[ext_resource path="res://Sounds/433819__archos__slime-14.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/betterjump.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/background.wav" type="AudioStream" id=8]
+[ext_resource path="res://Player/STANJELLYMOVE.png" type="Texture" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "move",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
+} ]
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 59.851, 555.598 )
+collision_mask = 14
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "move"
+
+[node name="movesquish" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+
+[node name="jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="backgroundmusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( -11.901, -5.82227, -11.901, 14.5527, -10.901, 15.8027, 9.9115, 15.8652, 10.724, 14.4902, 10.599, -5.57227, 4.599, -9.82227, -5.7135, -10.0723 )
